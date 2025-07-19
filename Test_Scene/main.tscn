@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bec4lt0byjcxs"]
+
+[ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
+[ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
+[ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_2xg56"]
+sky_material = SubResource("ProceduralSkyMaterial_nstlf")
+
+[sub_resource type="Environment" id="Environment_3adw2"]
+background_mode = 2
+sky = SubResource("Sky_2xg56")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nstlf"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nstlf"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3adw2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_nstlf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94428, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nstlf")
+surface_material_override/0 = ExtResource("2_2xg56")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nstlf")
+
+[node name="Node3D" parent="." instance=ExtResource("3_3adw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81295, 0)
