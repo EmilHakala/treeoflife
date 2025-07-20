@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwggrf7sbmkcv"]
+[gd_scene load_steps=19 format=3 uid="uid://bwggrf7sbmkcv"]
 
 [ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://addons/PlayerCharacter/StateMachine/PlayerCharacterScript.gd" id="1_h128t"]
 [ext_resource type="Script" uid="uid://b0fbr48rbvn27" path="res://addons/PlayerCharacter/Camera/CameraScript.gd" id="2_x12n0"]
+[ext_resource type="Shader" uid="uid://cjakbvfjicq5c" path="res://psx_camera/psx_camera_shader.gdshader" id="3_fu2j1"]
 [ext_resource type="PackedScene" uid="uid://bvofm0kvj4cnh" path="res://Menu/PauseMenu/PauseMenu.tscn" id="12_17hed"]
 [ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://addons/PlayerCharacter/StateMachine/StateMachineScript.gd" id="54_e0r17"]
 [ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://addons/PlayerCharacter/StateMachine/IdleStateScript.gd" id="55_dayh2"]
@@ -20,6 +21,26 @@ point_count = 2
 _limits = [0.0, 30.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rap5"]
+render_priority = 0
+shader = ExtResource("3_fu2j1")
+shader_parameter/enable_fog = false
+shader_parameter/fog_color = Color(0.729412, 0.729412, 0.729412, 1)
+shader_parameter/noise_color = Color(0, 0, 0, 1)
+shader_parameter/fog_distance = 100.0
+shader_parameter/fog_fade_range = 50.0
+shader_parameter/enable_noise = false
+shader_parameter/noise_time_fac = 1.65
+shader_parameter/enable_color_limitation = true
+shader_parameter/color_levels = 24
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_17hed"]
+material = SubResource("ShaderMaterial_2rap5")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5yjma"]
 
@@ -94,6 +115,10 @@ fov = 90.0
 near = 0.01
 far = 1000.0
 
+[node name="PSXMesh" type="MeshInstance3D" parent="CameraHolder/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0763102, 0, -0.55748)
+mesh = SubResource("QuadMesh_17hed")
+
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_5yjma")
 
@@ -147,4 +172,7 @@ metadata/_custom_type_script = "uid://bhoqhv7escpyx"
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_17hed")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="fpsLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS: "

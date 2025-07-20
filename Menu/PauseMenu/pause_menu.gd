@@ -42,5 +42,5 @@ func _process(delta: float) -> void:
 
 
 func _on_dev_pressed() -> void:
-	#$"../../HUD".hide()
-	print("test")
+	$"../../fpsLabel".hide()
+	

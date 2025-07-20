@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=11 format=3 uid="uid://bec4lt0byjcxs"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
@@ -22,6 +22,12 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nstlf"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3adw2"]
+bg_color = Color(0.815686, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0vc6"]
+bg_color = Color(0, 0.686275, 0, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -44,5 +50,19 @@ surface_material_override/0 = ExtResource("2_2xg56")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_nstlf")
 
-[node name="Node3D" parent="." instance=ExtResource("3_3adw2")]
+[node name="Tree" parent="." instance=ExtResource("3_3adw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81295, 0)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 21.0
+offset_right = 99.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_3adw2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l0vc6")
+value = 100.0

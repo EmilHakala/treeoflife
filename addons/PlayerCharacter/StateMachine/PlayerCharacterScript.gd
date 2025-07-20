@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 class_name PlayerCharacter 
 
+@onready var fps_label: Label = $fpsLabel
+
+
 @export_group("Movement variables")
 var moveSpeed : float
 var moveAccel : float
@@ -94,21 +97,10 @@ func _ready():
 	
 	
 	
-func _process(_delta: float):
-	displayProperties()
-	
 func _physics_process(_delta : float):
 	modifyPhysicsProperties()
 	
 	move_and_slide()
-	
-func displayProperties():
-	#display properties on the hud
-	if hud != null:
-		hud.displayCurrentState(stateMachine.currStateName)
-		hud.displayDesiredMoveSpeed(desiredMoveSpeed)
-		hud.displayVelocity(velocity.length())
-		hud.displayNbJumpsInAirAllowed(nbJumpsInAirAllowed)
 		
 func modifyPhysicsProperties():
 	lastFramePosition = position #get play char position every frame
@@ -120,3 +112,6 @@ func gravityApply(delta : float):
 	#otherwise, apply fall gravity
 	if velocity.y >= 0.0: velocity.y += jumpGravity * delta
 	elif velocity.y < 0.0: velocity.y += fallGravity * delta
+
+func _process(delta: float) -> void:
+	fps_label.text="FPS: " + str(Engine.get_frames_per_second())
