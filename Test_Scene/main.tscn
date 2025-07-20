@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=12 format=3 uid="uid://bec4lt0byjcxs"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
 [ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
+[ext_resource type="PackedScene" uid="uid://nkw30qyr4701" path="res://enemies/simple_enemy.tscn" id="4_l0vc6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -66,3 +67,6 @@ theme_override_constants/outline_size = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_3adw2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l0vc6")
 value = 100.0
+
+[node name="SimpleEnemy" parent="." instance=ExtResource("4_l0vc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)

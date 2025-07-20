@@ -42,5 +42,10 @@ func _process(delta: float) -> void:
 
 
 func _on_dev_pressed() -> void:
-	$"../../fpsLabel".hide()
+	if $"../../CameraHolder/Camera/PSXMesh".visible:	
+		$"../../fpsLabel".hide()
+		$"../../CameraHolder/Camera/PSXMesh".hide()
+	else:
+		$"../../fpsLabel".show()
+		$"../../CameraHolder/Camera/PSXMesh".show()
 	
