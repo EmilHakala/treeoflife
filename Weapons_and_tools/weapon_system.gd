@@ -22,7 +22,9 @@ func fire_weapon():
 		randf_range(-0.01, 0.01),
 		-recoil_amount
 	)
-
+	
+	
+	
 	var start_position = global_position  # Start at gun muzzle or camera
 	var direction = -global_transform.basis.z.normalized()  # Forward direction (assuming -Z is forward)
 	var end_position = start_position + direction * 1000.0  # Length of ray
@@ -34,6 +36,11 @@ func fire_weapon():
 	query.collide_with_bodies = true
 	
 	var result = space_state.intersect_ray(query)
+	
+	$GPUParticles3D.look_at(end_position, Vector3.UP)
+	
+	# Trigger one-shot emission
+	$GPUParticles3D.restart()
 	
 	if result:
 		print("Hit:", result.collider.name)

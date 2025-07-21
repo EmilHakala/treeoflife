@@ -58,13 +58,14 @@ shader_parameter/flash_speed = 5.0
 shader_parameter/pixelation = 32.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2rfya"]
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
 direction = Vector3(0, 0, -1)
 spread = 1.0
 initial_velocity_min = 500.0
 initial_velocity_max = 500.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tp4dy"]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("6_2rfya")
 shader_parameter/color = Color(1, 1, 0.5, 1)
 
@@ -163,9 +164,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_2rfya")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="CameraHolder/Camera/Weapon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432, -0.406, -1.58533)
+ignore_occlusion_culling = true
 emitting = false
 amount = 1
-lifetime = 0.1
+lifetime = 0.2
 one_shot = true
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_2rfya")
