@@ -4,6 +4,10 @@ class_name PlayerCharacter
 
 @onready var fps_label: Label = $fpsLabel
 
+var health : int = 100
+@onready var health_bar: ProgressBar = $"../healthBar"
+
+
 
 @export_group("Movement variables")
 var moveSpeed : float
@@ -115,3 +119,8 @@ func gravityApply(delta : float):
 
 func _process(delta: float) -> void:
 	fps_label.text="FPS: " + str(Engine.get_frames_per_second())
+
+
+func _on_simple_enemy_collided_with_player() -> void:
+	health = health - 5
+	health_bar.value = health

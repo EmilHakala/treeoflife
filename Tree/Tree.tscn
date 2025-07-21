@@ -19,6 +19,7 @@ mesh = SubResource("CylinderMesh_j1pdt")
 surface_material_override/0 = SubResource("StandardMaterial3D_hnqgh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_adxuq")
