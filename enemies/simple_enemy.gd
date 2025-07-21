@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 			if collider != last_player_collision:
 				last_player_collision = collider
 				emit_signal("collided_with_player")
-				print("Collided with Player: ", collider.name)
+				print("Collision with Player: ", collider.name)
 				var push_direction = -collision.get_normal().normalized()
 				pushback_velocity = push_direction * -7.0
 
