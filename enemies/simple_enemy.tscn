@@ -1,34 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://nkw30qyr4701"]
+[gd_scene load_steps=6 format=3 uid="uid://nkw30qyr4701"]
 
 [ext_resource type="Script" uid="uid://c7h55cci8e6wt" path="res://enemies/simple_enemy.gd" id="1_upmka"]
 [ext_resource type="Script" uid="uid://cmgcelj1qxg8o" path="res://addons/tattomoosa.vision_cone_3d/src/VisionCone3D.gd" id="2_2chrn"]
-[ext_resource type="Texture2D" uid="uid://cr5ceedy0onf8" path="res://addons/Arts/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_6jotu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uks5v"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uks5v"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ip7x"]
-albedo_texture = ExtResource("2_6jotu")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uks5v"]
+albedo_color = Color(1, 0, 0.239216, 1)
 
-[node name="SimpleEnemy" type="CharacterBody3D"]
-collision_layer = 17
+[node name="SimpleEnemy" type="Node3D"]
 script = ExtResource("1_upmka")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_uks5v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = SubResource("CapsuleMesh_uks5v")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_5ip7x")
+surface_material_override/0 = SubResource("StandardMaterial3D_uks5v")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532147, 0)
+target_position = Vector3(0, 0, -10)
 
 [node name="VisionCone3D" type="Area3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_2chrn")
-angle = 105.0
 debug_draw = true
 collision_layer_ = 2
 collision_mask_ = 3

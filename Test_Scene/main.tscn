@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=12 format=3 uid="uid://bec4lt0byjcxs"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
 [ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
-[ext_resource type="Script" uid="uid://c7nowfk64e3kg" path="res://Tree/tree.gd" id="4_i07i3"]
 [ext_resource type="PackedScene" uid="uid://nkw30qyr4701" path="res://enemies/simple_enemy.tscn" id="4_l0vc6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
@@ -54,7 +53,6 @@ shape = SubResource("ConcavePolygonShape3D_nstlf")
 
 [node name="Tree" parent="." instance=ExtResource("3_3adw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81295, 0)
-script = ExtResource("4_i07i3")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 5
@@ -72,5 +70,3 @@ value = 100.0
 
 [node name="SimpleEnemy" parent="." instance=ExtResource("4_l0vc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
-
-[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
