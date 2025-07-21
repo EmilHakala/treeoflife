@@ -90,7 +90,12 @@ func _on_vision_cone_3d_body_hidden(body: Node3D) -> void:
 		visible_target = null
 		target_position = Vector3.ZERO  # Go back to idle/home position
 		
-func on_hit(damage: int, hit_position: Vector3, hit_normal: Vector3):
+func on_hit(damage: int, hit_position: Vector3, hit_normal: Vector3) -> void:
+	show_hit_effect(hit_position, hit_normal)
 	health = health-damage
 	if health <= 0:
 		queue_free()
+
+func show_hit_effect(hit_position: Vector3, hit_normal: Vector3) -> void:
+	print("meow")
+	
