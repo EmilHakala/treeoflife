@@ -42,13 +42,12 @@ func fire_weapon():
 	# Trigger one-shot emission
 	$GPUParticles3D.restart()
 	
-	if result:
+	if result and result.has("collider"): 
 		print("Hit:", result.collider.name)
-		# Optional:
-		# - result.position → impact point
-		# - result.normal → surface normal
-		# - result.collider → the object hit
-		# Play impact effects, reduce health, etc.
+		var enemy = result.collider
+		if enemy.has_method("on_hit"):
+			enemy.on_hit(10, result.position, result.normal)
+
 	$Muzzleflash.visible = true
 	await get_tree().create_timer(0.05).timeout
 	$Muzzleflash.visible = false

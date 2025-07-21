@@ -12,6 +12,8 @@ var last_player_collision: Object = null  # Track last player collided
 var pushback_velocity: Vector3 = Vector3.ZERO
 var pushback_decay: float = 5.0  # Higher = quicker stop
 
+
+var health: int = 100
 var speed: float = 5.0
 var rotation_speed: float = 5.0
 
@@ -87,3 +89,8 @@ func _on_vision_cone_3d_body_hidden(body: Node3D) -> void:
 	if body == visible_target:
 		visible_target = null
 		target_position = Vector3.ZERO  # Go back to idle/home position
+		
+func on_hit(damage: int, hit_position: Vector3, hit_normal: Vector3):
+	health = health-damage
+	if health <= 0:
+		queue_free()

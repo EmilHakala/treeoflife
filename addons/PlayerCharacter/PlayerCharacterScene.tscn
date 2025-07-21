@@ -52,8 +52,8 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2rfya"]
 render_priority = 0
 shader = ExtResource("5_ypkm2")
-shader_parameter/flash_color = Color(1, 0.152941, 0.2, 1)
-shader_parameter/noise_strength = 1.0
+shader_parameter/flash_color = Color(1, 0.843137, 0.2, 1)
+shader_parameter/noise_strength = 0.2
 shader_parameter/flash_speed = 5.0
 shader_parameter/pixelation = 32.0
 
@@ -61,8 +61,8 @@ shader_parameter/pixelation = 32.0
 emission_shape_scale = Vector3(0.1, 0.1, 0.1)
 direction = Vector3(0, 0, -1)
 spread = 1.0
-initial_velocity_min = 500.0
-initial_velocity_max = 500.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tp4dy"]
 render_priority = 1
@@ -237,10 +237,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.5
-offset_top = -2.5
-offset_right = 2.5
-offset_bottom = 2.5
+offset_left = -1.25
+offset_top = -1.25
+offset_right = 1.25
+offset_bottom = 1.25
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
