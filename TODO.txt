@@ -1,0 +1,5 @@
+- Implement grappling hook from plugin
+- Implement weapons
+- Make scene nicer looking
+- Implement NPC's
+- Launch MVP

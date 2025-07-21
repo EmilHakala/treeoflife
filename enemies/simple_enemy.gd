@@ -1,11 +1,14 @@
 extends CharacterBody3D
 
 signal collided_with_static_on_layer_5
+signal collided_with_player
+
 
 var target_position: Vector3 = Vector3.ZERO
 var visible_target: Node3D = null
 
 var last_static_collision: Object = null
+var last_player_collision: Object = null
 
 var pushback_velocity: Vector3 = Vector3.ZERO
 var pushback_decay: float = 5.0  # Higher = quicker stop
@@ -47,7 +50,8 @@ func _physics_process(delta: float) -> void:
 	for i in range(collision_count):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-
+		#print("Collided with: ", collider)  # Debug line
+		
 		if collider is StaticBody3D:
 			var collider_layer = collider.collision_layer
 			if (collider_layer & (1 << 4)) != 0:
@@ -63,10 +67,22 @@ func _physics_process(delta: float) -> void:
 					var push_direction = -collision.get_normal().normalized()
 					pushback_velocity = push_direction * -7.0  # Adjust force (5.0 = strong push)
 
-	# Reset tracker if no collision this frame
+		# Detect collision with player
+		if collider.is_in_group("PlayerCharacter"):  # Assumes your player node is in group 'player'
+			if collider != last_player_collision:
+				last_player_collision = collider
+				emit_signal("collided_with_player")
+				print("Collided with Player: ", collider.name)
+				# Apply a smooth pushback
+				var push_direction = -collision.get_normal().normalized()
+				pushback_velocity = push_direction * -7.0  # Adjust force (5.0 = strong push)
+
+
+
+	# Reset trackers if no collision this frame
 	if not collided_this_frame:
 		last_static_collision = null
-
+		last_player_collision = null
 
 
 
