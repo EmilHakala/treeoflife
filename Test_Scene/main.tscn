@@ -92,6 +92,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
 collision_layer = 17
 collision_mask = 19
 
+[node name="SimpleEnemy2" parent="." instance=ExtResource("4_l0vc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
+collision_layer = 17
+collision_mask = 19
+
+[node name="SimpleEnemy3" parent="." instance=ExtResource("4_l0vc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
+collision_layer = 17
+collision_mask = 19
+
+[node name="SimpleEnemy4" parent="." instance=ExtResource("4_l0vc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
+collision_layer = 17
+collision_mask = 19
+
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
@@ -121,3 +136,9 @@ layout_mode = 2
 
 [connection signal="collided_with_player" from="SimpleEnemy" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
 [connection signal="collided_with_static_on_layer_5" from="SimpleEnemy" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
+[connection signal="collided_with_player" from="SimpleEnemy2" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
+[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy2" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
+[connection signal="collided_with_player" from="SimpleEnemy3" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
+[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy3" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
+[connection signal="collided_with_player" from="SimpleEnemy4" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
+[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy4" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
