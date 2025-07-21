@@ -187,10 +187,6 @@ text = "Quit to Main Menu"
 layout_mode = 2
 text = "Toggle Dev Mode"
 
-[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Restart"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gfwwi")
@@ -200,4 +196,3 @@ libraries = {
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Dev" to="." method="_on_dev_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

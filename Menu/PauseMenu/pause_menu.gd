@@ -49,7 +49,3 @@ func _on_dev_pressed() -> void:
 		$"../../fpsLabel".show()
 		$"../../CameraHolder/Camera/PSXMesh".show()
 	
-
-
-func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
