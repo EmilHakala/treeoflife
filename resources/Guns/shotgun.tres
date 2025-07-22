@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Gun" load_steps=2 format=3 uid="uid://dbgrc20hx83fp"]
+[gd_resource type="Resource" script_class="Gun" load_steps=3 format=3 uid="uid://dbgrc20hx83fp"]
 
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_eqp7o"]
+[ext_resource type="ArrayMesh" path="res://Assets/Weapons/player_arms_shotgun.tres" id="1_wx6bj"]
 
 [resource]
 script = ExtResource("1_eqp7o")
 type = 1
 ammo = "shotgun"
+mesh = ExtResource("1_wx6bj")
 cooldown = 0.5
 sway = 0.2
 automatic = false

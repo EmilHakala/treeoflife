@@ -2,17 +2,44 @@ extends Node
 
 @export var parent : CharacterBody3D
 @onready var cooldown: Timer = $Cooldown
+@onready var player_arms: Node3D = $"../CameraHolder/Camera/Player_Arms"
+
 
 const BULLET_DECALS = preload("res://Assets/Decals/bullet_decals.tscn")
 
 var current_gun : Gun
+
+func player_ready():
+	if parent.name == "PlayerCharacter":
+		player_arms.reload.connect(player_reload)
+
+func player_reload():
+	current_gun = parent.current_gun
+	
+	 #ammo var
+	var ammo_amt : int = parent.ammo[current_gun.ammo]
+	var missing_ammo : int = current_gun.max_mag - parent.current_bullets
+	
+	match ammo_amt >= current_gun.max_mag:
+		true:
+			parent.current_bullets = current_gun.max_mag
+			parent.ammo[current_gun.ammo] -= missing_ammo
+		false:
+			parent.current_bullets += parent.ammo[current_gun.ammo]
+			parent.ammo[current_gun.ammo] = 0
+			
+	parent.can_shoot = true
+	parent.is_reloading = false
+	
 
 func shoot():
 	current_gun = parent.current_gun
 	
 	if parent.can_shoot and parent.current_bullets > 0:
 		var valid_bullets : Array[Dictionary] = get_bullet_raycasts()
-	
+		
+		player_arms.play_gun_anim("recoil")
+		
 		if current_gun.type != Gun.GunType.MELEE:
 			parent.current_bullets = parent.current_bullets - 1
 			
@@ -88,6 +115,21 @@ func get_bullet_raycasts():
 		
 	return valid_bullets
 		
+
+func reload():
+	current_gun = parent.current_gun
+	
+	if current_gun.type != Gun.GunType.MELEE:
+		#If gun is missing bullets and player has required bullets:
+			if parent.current_bullets < current_gun.max_mag:
+				parent.can_shoot = false
+				parent.is_reloading = true
+				
+				if parent.ammo[current_gun.ammo] > 0:
+					#Play reload animation and sfx
+					player_arms.play_gun_anim("reload")
+					return
+
 
 
 func _on_cooldown_timeout() -> void:

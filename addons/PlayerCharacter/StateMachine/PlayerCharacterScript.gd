@@ -3,6 +3,7 @@ extends CharacterBody3D
 class_name PlayerCharacter 
 
 @onready var fps_label: Label = $fpsLabel
+@onready var player_arms: Node3D = $CameraHolder/Camera/Player_Arms
 
 var health : int = 100
 @onready var health_bar: ProgressBar = $"../healthBar"
@@ -41,8 +42,8 @@ var desiredMoveSpeed : float
 @export var desiredMoveSpeedCurve : Curve
 @export var maxSpeed : float
 @export var inAirMoveSpeedCurve : Curve
-var inputDirection : Vector2 
-var moveDirection : Vector3 
+var inputDirection : Vector2
+var moveDirection : Vector3
 @export var hitGroundCooldown : float #amount of time the character keep his accumulated speed before losing it (while being on ground)
 var hitGroundCooldownRef : float 
 @export var bunnyHopDmsIncre : float #bunny hopping desired move speed incrementer
@@ -108,11 +109,14 @@ var coyoteJumpOn : bool = false
 @onready var model : MeshInstance3D = $Model
 @onready var hitbox : CollisionShape3D = $Hitbox
 @onready var stateMachine : Node = $StateMachine
-@onready var hud : CanvasLayer = $HUD
+#@onready var hud : CanvasLayer = $HUD
 @onready var ceilingCheck : RayCast3D = $Raycasts/CeilingCheck
 @onready var floorCheck : RayCast3D = $Raycasts/FloorCheck
 
 func _ready():
+	
+	gun.player_ready()
+	
 	#set move variables, and value references
 	moveSpeed = walkSpeed
 	moveAccel = walkAccel
@@ -124,7 +128,21 @@ func _ready():
 	coyoteJumpCooldownRef = coyoteJumpCooldown
 	
 	
-	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reload"):
+		gun.reload()
+		
+	if event.is_action_pressed("slot_1") and is_reloading == false:
+		switch_weapon(MELEE) #CHANGE TO DYNAMIC
+		
+	if event.is_action_pressed("slot_2") and is_reloading == false:
+		switch_weapon(PISTOL) #CHANGE TO DYNAMIC
+		
+	if event.is_action_pressed("slot_3") and is_reloading == false:
+		switch_weapon(SHOTGUN) #CHANGE TO DYNAMIC
+		
+		
+
 func _physics_process(_delta : float):
 	modifyPhysicsProperties()
 	
@@ -159,3 +177,29 @@ func _process(delta: float) -> void:
 func _on_simple_enemy_collided_with_player() -> void:
 	health = health - 5
 	health_bar.value = health
+	
+
+
+func switch_weapon(new_weapon : Gun):
+	if new_weapon == current_gun:
+		return
+	
+	#Add bullets back to total ammo
+	ammo[current_gun.ammo] += current_bullets
+	current_bullets = 0
+	
+	#switch gun resource
+	current_gun = new_weapon
+	
+	player_arms.update_mesh(current_gun.mesh)
+	
+	#load bullets to new gun
+	match ammo[current_gun.ammo] >= current_gun.max_mag:
+		true:
+			current_bullets = current_gun.max_mag
+			ammo[current_gun.ammo] -= current_gun.max_mag
+		false:
+			current_bullets += ammo[current_gun.ammo]
+			ammo[current_gun.ammo] = 0
+	
+	
