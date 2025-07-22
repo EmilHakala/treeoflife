@@ -12,7 +12,7 @@
 albedo_texture = ExtResource("2_6jotu")
 texture_filter = 0
 
-[node name="SimpleEnemy" type="CharacterBody3D"]
+[node name="SimpleEnemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_upmka")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -33,6 +33,8 @@ debug_draw = true
 collision_layer_ = 2
 collision_mask_ = 3
 metadata/_custom_type_script = "uid://cmgcelj1qxg8o"
+
+[node name="bulletAnchor" type="Node3D" parent="."]
 
 [connection signal="body_hidden" from="VisionCone3D" to="." method="_on_vision_cone_3d_body_hidden"]
 [connection signal="body_sighted" from="VisionCone3D" to="." method="_on_vision_cone_3d_body_sighted"]

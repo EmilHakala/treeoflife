@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=2 format=3 uid="uid://dbgrc20hx83fp"]
+
+[ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_eqp7o"]
+
+[resource]
+script = ExtResource("1_eqp7o")
+type = 1
+ammo = "shotgun"
+cooldown = 0.5
+sway = 0.2
+automatic = false
+firing_sound = Array[AudioStream]([])
+damage = 10
+spread = 2.25
+max_mag = 8
+bullet_amount = 6
+bullet_range = 40
+metadata/_custom_type_script = "uid://bh8pryhk6qeln"

@@ -7,6 +7,30 @@ class_name PlayerCharacter
 var health : int = 100
 @onready var health_bar: ProgressBar = $"../healthBar"
 
+#SystemNodes
+@onready var gun: Node = $GunSystem
+
+
+#GunRaycast
+@onready var bullet_raycast: RayCast3D = $CameraHolder/Camera/Bullet_Raycast
+
+
+
+#guns
+var current_gun : Gun = SHOTGUN
+var can_shoot : bool = true
+var is_reloading : bool = false
+var current_bullets : int = current_gun.max_mag
+
+const MELEE = preload("res://resources/Guns/melee.tres")
+const PISTOL = preload("res://resources/Guns/pistol.tres")
+const SHOTGUN = preload("res://resources/Guns/shotgun.tres")
+
+var ammo : Dictionary = {
+	"melee" : 1,
+	"pistol" : 6,
+	"shotgun" : 8
+}
 
 
 @export_group("Movement variables")
@@ -105,6 +129,17 @@ func _physics_process(_delta : float):
 	modifyPhysicsProperties()
 	
 	move_and_slide()
+	
+	#SemiAuto gun
+	if Input.is_action_just_pressed("Fire") and current_gun.automatic == false:
+		gun.shoot()
+	
+	if current_gun.type == Gun.GunType.MELEE:
+		$"../Ammo".visible = false
+	else:
+		$"../Ammo".visible = true
+	$"../Ammo".text = "%s / %s" % [current_bullets, ammo[current_gun.ammo]]
+	print(current_gun.type)
 		
 func modifyPhysicsProperties():
 	lastFramePosition = position #get play char position every frame

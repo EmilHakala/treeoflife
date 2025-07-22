@@ -3,6 +3,8 @@ extends CharacterBody3D
 signal collided_with_static_on_layer_5
 signal collided_with_player  # New signal
 
+@onready var blood_fx_scene: PackedScene = preload("res://enemies/BloodImpact.tscn")
+
 var target_position: Vector3 = Vector3.ZERO
 var visible_target: Node3D = null
 
@@ -90,12 +92,15 @@ func _on_vision_cone_3d_body_hidden(body: Node3D) -> void:
 		visible_target = null
 		target_position = Vector3.ZERO  # Go back to idle/home position
 		
-func on_hit(damage: int, hit_position: Vector3, hit_normal: Vector3) -> void:
+func change_health(damage: int, hit_position: Vector3, hit_normal: Vector3) -> void:
 	show_hit_effect(hit_position, hit_normal)
 	health = health-damage
 	if health <= 0:
 		queue_free()
 
 func show_hit_effect(hit_position: Vector3, hit_normal: Vector3) -> void:
-	print("meow")
+	var blood_fx = blood_fx_scene.instantiate()
+	blood_fx.global_transform.origin = hit_position
 	
+	blood_fx.look_at(hit_position + hit_normal, Vector3.UP)
+	get_tree().current_scene.add_child(blood_fx)

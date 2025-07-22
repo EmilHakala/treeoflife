@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq26yl6xx7mb"]
+
+[ext_resource type="Shader" uid="uid://b43pyllg2djq" path="res://enemies/BloodImpact.gdshader" id="1_goscj"]
+[ext_resource type="Script" uid="uid://dpi1m8imspgof" path="res://enemies/blood_impact.gd" id="1_xnmay"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xnmay"]
+lifetime_randomness = 0.17
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+emission_shape = 1
+emission_sphere_radius = 12.35
+direction = Vector3(0, 0, -1)
+spread = 27.651
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inrlb"]
+render_priority = 1
+shader = ExtResource("1_goscj")
+shader_parameter/blood_color = Color(0.705939, 3.53761e-06, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwuop"]
+material = SubResource("ShaderMaterial_inrlb")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="BloodImpact" type="Node3D"]
+script = ExtResource("1_xnmay")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+randomness = 0.15
+process_material = SubResource("ParticleProcessMaterial_xnmay")
+draw_pass_1 = SubResource("BoxMesh_cwuop")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

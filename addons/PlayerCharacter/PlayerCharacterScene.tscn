@@ -1,11 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwggrf7sbmkcv"]
+[gd_scene load_steps=20 format=3 uid="uid://bwggrf7sbmkcv"]
 
 [ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://addons/PlayerCharacter/StateMachine/PlayerCharacterScript.gd" id="1_h128t"]
 [ext_resource type="Script" uid="uid://b0fbr48rbvn27" path="res://addons/PlayerCharacter/Camera/CameraScript.gd" id="2_x12n0"]
+[ext_resource type="PackedScene" uid="uid://tv24746ehvjb" path="res://Systems/gun_system.tscn" id="2_ypkm2"]
 [ext_resource type="Shader" uid="uid://cjakbvfjicq5c" path="res://psx_camera/psx_camera_shader.gdshader" id="3_fu2j1"]
-[ext_resource type="Script" uid="uid://h12v623qeaqi" path="res://Weapons_and_tools/weapon_system.gd" id="4_17hed"]
-[ext_resource type="Shader" uid="uid://cqixxo11038v0" path="res://Weapons_and_tools/MuzzleFlash.gdshader" id="5_ypkm2"]
-[ext_resource type="Shader" uid="uid://tdh2fpwn54rk" path="res://Weapons_and_tools/BulletTrail.gdshader" id="6_2rfya"]
 [ext_resource type="PackedScene" uid="uid://bvofm0kvj4cnh" path="res://Menu/PauseMenu/PauseMenu.tscn" id="12_17hed"]
 [ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://addons/PlayerCharacter/StateMachine/StateMachineScript.gd" id="54_e0r17"]
 [ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://addons/PlayerCharacter/StateMachine/IdleStateScript.gd" id="55_dayh2"]
@@ -44,33 +42,6 @@ shader_parameter/dither_strength = 0.3
 material = SubResource("ShaderMaterial_2rap5")
 flip_faces = true
 size = Vector2(2, 2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_17hed"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_ypkm2"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rfya"]
-render_priority = 0
-shader = ExtResource("5_ypkm2")
-shader_parameter/flash_color = Color(1, 0.843137, 0.2, 1)
-shader_parameter/noise_strength = 0.2
-shader_parameter/flash_speed = 5.0
-shader_parameter/pixelation = 32.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2rfya"]
-emission_shape_scale = Vector3(0.1, 0.1, 0.1)
-direction = Vector3(0, 0, -1)
-spread = 1.0
-initial_velocity_min = 1000.0
-initial_velocity_max = 1000.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tp4dy"]
-render_priority = 1
-shader = ExtResource("6_2rfya")
-shader_parameter/color = Color(1, 1, 0.5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_67iuh"]
-material = SubResource("ShaderMaterial_tp4dy")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5yjma"]
 
@@ -120,6 +91,9 @@ runAction = "run"
 crouchAction = "crouch"
 jumpAction = "jump"
 
+[node name="GunSystem" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_ypkm2")]
+parent = NodePath("..")
+
 [node name="CameraHolder" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.55, 0)
 script = ExtResource("2_x12n0")
@@ -149,29 +123,10 @@ far = 1000.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("QuadMesh_17hed")
 
-[node name="Weapon" type="Node3D" parent="CameraHolder/Camera"]
-script = ExtResource("4_17hed")
-
-[node name="TestWeapon" type="MeshInstance3D" parent="CameraHolder/Camera/Weapon"]
-transform = Transform3D(0.18418, 0, 0, 0, 0.182326, 0, 0, 0, 1, 0.432437, -0.405871, -0.491204)
-mesh = SubResource("BoxMesh_17hed")
-
-[node name="Muzzleflash" type="MeshInstance3D" parent="CameraHolder/Camera/Weapon"]
-transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0.432, -0.406, -1.00551)
-sorting_offset = 1.0
-mesh = SubResource("QuadMesh_ypkm2")
-surface_material_override/0 = SubResource("ShaderMaterial_2rfya")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="CameraHolder/Camera/Weapon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432, -0.406, -1.58533)
-ignore_occlusion_culling = true
-emitting = false
-amount = 1
-lifetime = 0.2
-one_shot = true
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_2rfya")
-draw_pass_1 = SubResource("BoxMesh_67iuh")
+[node name="Bullet_Raycast" type="RayCast3D" parent="CameraHolder/Camera"]
+target_position = Vector3(0, 1, -40)
+debug_shape_custom_color = Color(0.686275, 0.686275, 0.686275, 1)
+debug_shape_thickness = 5
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_5yjma")

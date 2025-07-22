@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=2 format=3 uid="uid://bycw85ip036d"]
+
+[ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_c1j07"]
+
+[resource]
+script = ExtResource("1_c1j07")
+type = 0
+ammo = "melee"
+cooldown = 0.2
+sway = 0.2
+automatic = false
+firing_sound = Array[AudioStream]([])
+damage = 20
+spread = 0.0
+max_mag = 1
+bullet_amount = 1
+bullet_range = 8
+metadata/_custom_type_script = "uid://bh8pryhk6qeln"
