@@ -1,11 +1,13 @@
 extends Node3D
 
-var health : float = 100
-@onready var progress_bar: ProgressBar = $"../TreeHealth"
+var health : int = 100
+
+@onready var hud: Control = $"../HUD"
+
 
 func _on_simple_enemy_collided_with_static_on_layer_5() -> void:
 	health = health - 1.0
-	progress_bar.value=health
+	hud.update_hud()
 	
 	if health <= 0:
 		get_tree().reload_current_scene()

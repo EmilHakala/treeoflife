@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Gun" load_steps=3 format=3 uid="uid://cawkhq34w2l6k"]
 
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_x1lxy"]
-[ext_resource type="ArrayMesh" path="res://Assets/Weapons/player_arms_revolver.tres" id="1_yvauu"]
+[ext_resource type="ArrayMesh" uid="uid://bks3p4vgsdbos" path="res://Assets/Weapons/player_arms_revolver.tres" id="1_yvauu"]
 
 [resource]
 script = ExtResource("1_x1lxy")
 type = 2
 ammo = "pistol"
 mesh = ExtResource("1_yvauu")
-cooldown = 0.2
+cooldown = 0.3
 sway = 0.1
 automatic = false
 firing_sound = Array[AudioStream]([])

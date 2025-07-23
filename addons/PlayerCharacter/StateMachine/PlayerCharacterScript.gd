@@ -6,7 +6,9 @@ class_name PlayerCharacter
 @onready var player_arms: Node3D = $CameraHolder/Camera/Player_Arms
 
 var health : int = 100
-@onready var health_bar: ProgressBar = $"../healthBar"
+
+@onready var hud: Control = $"../HUD"
+
 
 #SystemNodes
 @onready var gun: Node = $GunSystem
@@ -18,7 +20,7 @@ var health : int = 100
 
 
 #guns
-var current_gun : Gun = SHOTGUN
+var current_gun : Gun = PISTOL
 var can_shoot : bool = true
 var is_reloading : bool = false
 var current_bullets : int = current_gun.max_mag
@@ -131,6 +133,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload") and is_reloading == false:
 		gun.reload()
+		hud.update_hud()
 		
 	if event.is_action_pressed("slot_1") and is_reloading == false:
 		switch_weapon(MELEE) #CHANGE TO DYNAMIC
@@ -151,13 +154,8 @@ func _physics_process(_delta : float):
 	#SemiAuto gun
 	if Input.is_action_just_pressed("Fire") and current_gun.automatic == false:
 		gun.shoot()
-	
-	if current_gun.type == Gun.GunType.MELEE:
-		$"../Ammo".visible = false
-	else:
-		$"../Ammo".visible = true
-	$"../Ammo".text = "%s / %s" % [current_bullets, ammo[current_gun.ammo]]
-	print(current_gun.type)
+		
+	hud.update_hud()
 		
 func modifyPhysicsProperties():
 	lastFramePosition = position #get play char position every frame
@@ -176,13 +174,14 @@ func _process(delta: float) -> void:
 
 func _on_simple_enemy_collided_with_player() -> void:
 	health = health - 5
-	health_bar.value = health
-	
+	hud.update_hud()
 
 
 func switch_weapon(new_weapon : Gun):
 	if new_weapon == current_gun:
 		return
+	
+	hud.update_hud()
 	
 	#Add bullets back to total ammo
 	ammo[current_gun.ammo] += current_bullets

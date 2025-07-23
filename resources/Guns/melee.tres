@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Gun" load_steps=3 format=3 uid="uid://bycw85ip036d"]
 
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_c1j07"]
-[ext_resource type="ArrayMesh" path="res://Assets/Weapons/player_arms_knife.tres" id="1_x33va"]
+[ext_resource type="ArrayMesh" uid="uid://dh4a0a7uyh2um" path="res://Assets/Weapons/player_arms_knife.tres" id="1_x33va"]
 
 [resource]
 script = ExtResource("1_c1j07")
 type = 0
 ammo = "melee"
 mesh = ExtResource("1_x33va")
-cooldown = 0.2
+cooldown = 0.5
 sway = 0.2
 automatic = false
 firing_sound = Array[AudioStream]([])
@@ -16,5 +16,5 @@ damage = 20
 spread = 0.0
 max_mag = 1
 bullet_amount = 1
-bullet_range = 8
+bullet_range = 3
 metadata/_custom_type_script = "uid://bh8pryhk6qeln"

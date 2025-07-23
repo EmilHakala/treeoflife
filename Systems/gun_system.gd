@@ -3,6 +3,7 @@ extends Node
 @export var parent : CharacterBody3D
 @onready var cooldown: Timer = $Cooldown
 @onready var player_arms: Node3D = $"../CameraHolder/Camera/Player_Arms"
+@onready var hud: Control = $HUD
 
 
 const BULLET_DECALS = preload("res://Assets/Decals/bullet_decals.tscn")

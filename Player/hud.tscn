@@ -29,26 +29,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ns4kc")
 
-[node name="PlayerHealth" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -37.0
-offset_right = 199.0
-offset_bottom = -10.0
-grow_vertical = 0
-scale = Vector2(0.7, 0.7)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_sndvk")
-theme_override_styles/background = SubResource("StyleBoxFlat_sndvk")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m6twi")
-value = 90.0
-allow_greater = true
-show_percentage = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TreeContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -59,16 +40,50 @@ offset_right = 80.0
 offset_bottom = 50.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TreeLabel" type="Label" parent="TreeContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_sndvk")
 text = "Tree Of Life"
 horizontal_alignment = 1
 
-[node name="TreeHealth" type="ProgressBar" parent="VBoxContainer"]
+[node name="TreeHealth" type="ProgressBar" parent="TreeContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_sndvk")
 theme_override_styles/background = SubResource("StyleBoxFlat_sndvk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_m6twi")
 value = 50.0
+
+[node name="PlayerHealth" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -50.0
+offset_right = 165.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sndvk")
+theme_override_styles/background = SubResource("StyleBoxFlat_sndvk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m6twi")
+value = 90.0
+allow_greater = true
+show_percentage = false
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -68.0
+offset_right = 164.0
+offset_bottom = -52.0
+grow_vertical = 0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sndvk")
+text = "0 / 0"
+horizontal_alignment = 1
