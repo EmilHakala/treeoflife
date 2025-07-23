@@ -190,7 +190,7 @@ func switch_weapon(new_weapon : Gun):
 	#switch gun resource
 	current_gun = new_weapon
 	
-	player_arms.update_mesh(current_gun.mesh)
+	player_arms.update_mesh(current_gun.mesh, current_gun.type)
 	
 	#load bullets to new gun
 	match ammo[current_gun.ammo] >= current_gun.max_mag:

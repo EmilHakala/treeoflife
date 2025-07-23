@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_vision_cone_3d_body_sighted(body: Node3D) -> void:
-	print("found body: " + str(body))
+	#print("found body: " + str(body))
 	visible_target = body  # Track the player
 
 func _on_vision_cone_3d_body_hidden(body: Node3D) -> void:

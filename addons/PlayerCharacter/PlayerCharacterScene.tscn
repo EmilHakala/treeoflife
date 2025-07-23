@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://addons/PlayerCharacter/StateMachine/PlayerCharacterScript.gd" id="1_h128t"]
 [ext_resource type="PackedScene" uid="uid://67fgk7omebds" path="res://Player/player_arms.tscn" id="2_2rfya"]
 [ext_resource type="Script" uid="uid://b0fbr48rbvn27" path="res://addons/PlayerCharacter/Camera/CameraScript.gd" id="2_x12n0"]
-[ext_resource type="PackedScene" uid="uid://tv24746ehvjb" path="res://Systems/gun_system.tscn" id="2_ypkm2"]
+[ext_resource type="PackedScene" uid="uid://tv24746ehvjb" path="res://Systems/Gun_System/gun_system.tscn" id="2_ypkm2"]
 [ext_resource type="Shader" uid="uid://cjakbvfjicq5c" path="res://psx_camera/psx_camera_shader.gdshader" id="3_fu2j1"]
 [ext_resource type="PackedScene" uid="uid://bvofm0kvj4cnh" path="res://Menu/PauseMenu/PauseMenu.tscn" id="12_17hed"]
 [ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://addons/PlayerCharacter/StateMachine/StateMachineScript.gd" id="54_e0r17"]
@@ -136,6 +136,7 @@ transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.244e-
 shape = SubResource("CapsuleShape3D_5yjma")
 
 [node name="Model" type="MeshInstance3D" parent="."]
+visible = false
 layers = 2
 material_override = SubResource("StandardMaterial3D_6bkys")
 mesh = SubResource("CapsuleMesh_p2iaj")
@@ -189,17 +190,3 @@ metadata/_custom_type_script = "uid://bhoqhv7escpyx"
 offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS: "
-
-[node name="Crosshair" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1.25
-offset_top = -1.25
-offset_right = 1.25
-offset_bottom = 1.25
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2

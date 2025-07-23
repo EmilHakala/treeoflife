@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=15 format=3 uid="uid://bec4lt0byjcxs"]
 
 [ext_resource type="PackedScene" uid="uid://cbqa64dyues83" path="res://Player/hud.tscn" id="1_eprlh"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
 [ext_resource type="Script" uid="uid://6a6ieh4x6wd5" path="res://Tree/tree.gd" id="4_i07i3"]
 [ext_resource type="PackedScene" uid="uid://nkw30qyr4701" path="res://enemies/simple_enemy.tscn" id="4_l0vc6"]
+[ext_resource type="PackedScene" uid="uid://bao2c6bwt0oyj" path="res://Systems/DayNightSystem/DN_System.tscn" id="7_yupyr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -101,6 +102,8 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="DnSystem" parent="." instance=ExtResource("7_yupyr")]
 
 [connection signal="collided_with_player" from="SimpleEnemy" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
 [connection signal="collided_with_static_on_layer_5" from="SimpleEnemy" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]

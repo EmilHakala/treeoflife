@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bao2c6bwt0oyj"]
+
+[ext_resource type="Script" uid="uid://0hbxxtclg65l" path="res://Systems/DayNightSystem/dn_system.gd" id="1_8aawm"]
+
+[node name="DnSystem" type="Node3D"]
+script = ExtResource("1_8aawm")

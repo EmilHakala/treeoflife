@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://j1brfvvmchs1"]
+
+[ext_resource type="Script" uid="uid://caahfg7wnm4uy" path="res://Menu/MainMenu/main_menu.gd" id="1_gxqt3"]
+[ext_resource type="FontFile" uid="uid://b0fgmd5g6ohsg" path="res://Assets/misc/Perfect DOS VGA 437.ttf" id="1_sij70"]
+[ext_resource type="Texture2D" uid="uid://bdween3gdpnvk" path="res://Assets/misc/ditheredBG.png" id="2_gxqt3"]
+[ext_resource type="Texture2D" uid="uid://dsoh0cq1qcy3k" path="res://Assets/misc/Among Pale Limbs (10).png" id="3_g1ub3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxqt3"]
+texture = ExtResource("2_gxqt3")
+modulate_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddfq2"]
+texture = ExtResource("3_g1ub3")
+modulate_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mpft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxqt3"]
+bg_color = Color(0.336608, 0.336608, 0.336608, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpft"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.489622, 0.489622, 0.489622, 1)
+shadow_size = 3
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gxqt3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gxqt3")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ddfq2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 30.0
+offset_right = 77.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.847059, 0.309804, 0.309804, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("1_sij70")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7mpft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gxqt3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mpft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mpft")
+text = "Start Game"
+
+[node name="options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.847059, 0.309804, 0.309804, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("1_sij70")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7mpft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gxqt3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mpft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mpft")
+text = "options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.847059, 0.309804, 0.309804, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("1_sij70")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7mpft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gxqt3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mpft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mpft")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.5
+offset_top = -101.0
+offset_right = 180.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.941176, 0.352941, 0.352941, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_sij70")
+theme_override_font_sizes/font_size = 50
+text = "AMONG PALE LIMBS"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
