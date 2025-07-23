@@ -78,8 +78,13 @@ func shoot():
 				
 				#Check for Decal amount
 				if GlobalSettings.spawned_decals.size() > GlobalSettings.max_decals:
-					GlobalSettings.spawned_decals[0].queue_free()
-					GlobalSettings.spawned_decals.remove_at(0)
+					if is_instance_valid(GlobalSettings.spawned_decals[0]):
+						GlobalSettings.spawned_decals[0].queue_free()
+						GlobalSettings.spawned_decals.remove_at(0)
+					else:
+						GlobalSettings.spawned_decals.remove_at(0)
+
+					
 
 					
 					

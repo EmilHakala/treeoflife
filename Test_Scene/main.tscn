@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=16 format=3 uid="uid://bec4lt0byjcxs"]
 
+[ext_resource type="PackedScene" uid="uid://cbqa64dyues83" path="res://Player/hud.tscn" id="1_eprlh"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
 [ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
@@ -37,6 +38,8 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="Node3D" type="Node3D"]
 
+[node name="HUD" parent="." instance=ExtResource("1_eprlh")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3adw2")
 
@@ -63,6 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81295, 0)
 script = ExtResource("4_i07i3")
 
 [node name="TreeHealth" type="ProgressBar" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -77,6 +81,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_l0vc6")
 value = 100.0
 
 [node name="healthBar" type="ProgressBar" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -134,6 +139,7 @@ mesh = SubResource("BoxMesh_i07i3")
 shape = SubResource("ConcavePolygonShape3D_i07i3")
 
 [node name="Ammo" type="Label" parent="."]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

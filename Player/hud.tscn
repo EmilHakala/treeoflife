@@ -1,4 +1,23 @@
-[gd_scene format=3 uid="uid://cbqa64dyues83"]
+[gd_scene load_steps=5 format=3 uid="uid://cbqa64dyues83"]
+
+[ext_resource type="Script" uid="uid://je7qonmalrn8" path="res://Player/hud.gd" id="1_ns4kc"]
+[ext_resource type="FontFile" uid="uid://b0fgmd5g6ohsg" path="res://Assets/misc/Perfect DOS VGA 437.ttf" id="2_sndvk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sndvk"]
+bg_color = Color(0.847059, 0.309804, 0.309804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6twi"]
+bg_color = Color(0.658824, 0.776471, 0.486275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -7,14 +26,49 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ns4kc")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="PlayerHealth" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -37.0
+offset_right = 199.0
+offset_bottom = -10.0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sndvk")
+theme_override_styles/background = SubResource("StyleBoxFlat_sndvk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m6twi")
+value = 90.0
+allow_greater = true
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -92.0
-offset_top = 57.0
-offset_right = 92.0
-offset_bottom = 84.0
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 50.0
 grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_sndvk")
+text = "Tree Of Life"
+horizontal_alignment = 1
+
+[node name="TreeHealth" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sndvk")
+theme_override_styles/background = SubResource("StyleBoxFlat_sndvk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m6twi")
+value = 50.0

@@ -29,8 +29,8 @@ const SHOTGUN = preload("res://resources/Guns/shotgun.tres")
 
 var ammo : Dictionary = {
 	"melee" : 1,
-	"pistol" : 6,
-	"shotgun" : 8
+	"pistol" : 60,
+	"shotgun" : 80
 }
 
 
@@ -129,7 +129,7 @@ func _ready():
 	
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("reload"):
+	if event.is_action_pressed("reload") and is_reloading == false:
 		gun.reload()
 		
 	if event.is_action_pressed("slot_1") and is_reloading == false:
