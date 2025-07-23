@@ -104,6 +104,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="DnSystem" parent="." instance=ExtResource("7_yupyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6066, 44.5091)
 
 [connection signal="collided_with_player" from="SimpleEnemy" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
 [connection signal="collided_with_static_on_layer_5" from="SimpleEnemy" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]

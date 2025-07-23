@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform float rotation_deg = 0.0;
 
 void fragment() {
-    float angle = -radians(rotation_deg);
+    float angle = -radians(rotation_deg - 130.0);
 
     vec2 center = vec2(0.5);
     vec2 uv = UV - center;
