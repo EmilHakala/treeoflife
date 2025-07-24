@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cbqa64dyues83" path="res://Player/hud.tscn" id="1_eprlh"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
-[ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_2xg56"]
 [ext_resource type="PackedScene" uid="uid://bubonovpr0nq5" path="res://Tree/Tree.tscn" id="3_3adw2"]
+[ext_resource type="Texture2D" uid="uid://der8e5rdlumor" path="res://Assets/Nature/textures/grass01.png" id="3_eprlh"]
 [ext_resource type="Script" uid="uid://6a6ieh4x6wd5" path="res://Tree/tree.gd" id="4_i07i3"]
-[ext_resource type="PackedScene" uid="uid://nkw30qyr4701" path="res://enemies/simple_enemy.tscn" id="4_l0vc6"]
 [ext_resource type="PackedScene" uid="uid://bao2c6bwt0oyj" path="res://Systems/DayNightSystem/DN_System.tscn" id="7_yupyr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
@@ -21,7 +20,15 @@ sky = SubResource("Sky_2xg56")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupyr"]
+albedo_texture = ExtResource("3_eprlh")
+metallic_specular = 0.0
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_nstlf"]
+material = SubResource("StandardMaterial3D_yupyr")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nstlf"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -45,41 +52,20 @@ shadow_enabled = true
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_nstlf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94428, 3, 0)
 collision_layer = 19
-collision_mask = 3
+collision_mask = 19
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 mesh = SubResource("PlaneMesh_nstlf")
-surface_material_override/0 = ExtResource("2_2xg56")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_nstlf")
 
 [node name="Tree" parent="." instance=ExtResource("3_3adw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81295, 0)
 script = ExtResource("4_i07i3")
-
-[node name="SimpleEnemy" parent="." instance=ExtResource("4_l0vc6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
-collision_layer = 17
-collision_mask = 19
-
-[node name="SimpleEnemy2" parent="." instance=ExtResource("4_l0vc6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
-collision_layer = 17
-collision_mask = 19
-
-[node name="SimpleEnemy3" parent="." instance=ExtResource("4_l0vc6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
-collision_layer = 17
-collision_mask = 19
-
-[node name="SimpleEnemy4" parent="." instance=ExtResource("4_l0vc6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07296, 0.982013, 18.6066)
-collision_layer = 17
-collision_mask = 19
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 9.29821, 0, 0, 0, 7.84332, 0, 0, -12.3462)
