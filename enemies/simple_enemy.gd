@@ -1,9 +1,14 @@
 extends CharacterBody3D
 
-signal collided_with_static_on_layer_5
-signal collided_with_player  # New signal
 
 @onready var blood_fx_scene: PackedScene = preload("res://enemies/BloodImpact.tscn")
+
+#Collision calls
+var player_character: Node = null
+var tree: Node = null
+
+
+
 
 var target_position: Vector3 = Vector3.ZERO
 var visible_target: Node3D = null
@@ -52,6 +57,7 @@ func _physics_process(delta: float) -> void:
 	for i in range(collision_count):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
+		print(collider)
 
 		# Detect collision with static object on layer 5
 		if collider is StaticBody3D:
@@ -61,7 +67,7 @@ func _physics_process(delta: float) -> void:
 
 				if collider != last_static_collision:
 					last_static_collision = collider
-					emit_signal("collided_with_static_on_layer_5")
+					tree._on_simple_enemy_collided_with_static_on_layer_5()
 					print("Collided with StaticBody3D on layer 5: ", collider.name)
 
 					# Apply a smooth pushback
@@ -72,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		if collider.is_in_group("PlayerCharacter"):  # Assumes your player node is in group 'player'
 			if collider != last_player_collision:
 				last_player_collision = collider
-				emit_signal("collided_with_player")
+				player_character._on_simple_enemy_collided_with_player()
 				print("Collision with Player: ", collider.name)
 				var push_direction = -collision.get_normal().normalized()
 				pushback_velocity = push_direction * -7.0

@@ -44,7 +44,8 @@ shadow_enabled = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_nstlf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94428, 3, 0)
-collision_mask = 17
+collision_layer = 19
+collision_mask = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
@@ -105,12 +106,3 @@ grow_vertical = 0
 
 [node name="DnSystem" parent="." instance=ExtResource("7_yupyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6066, 44.5091)
-
-[connection signal="collided_with_player" from="SimpleEnemy" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
-[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
-[connection signal="collided_with_player" from="SimpleEnemy2" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
-[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy2" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
-[connection signal="collided_with_player" from="SimpleEnemy3" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
-[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy3" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]
-[connection signal="collided_with_player" from="SimpleEnemy4" to="PlayerCharacter" method="_on_simple_enemy_collided_with_player"]
-[connection signal="collided_with_static_on_layer_5" from="SimpleEnemy4" to="Tree" method="_on_simple_enemy_collided_with_static_on_layer_5"]

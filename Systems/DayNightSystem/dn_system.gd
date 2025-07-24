@@ -45,7 +45,9 @@ func setup_day_spawn(day: int):
 func spawn_enemy():
 	var spawn_point: Vector3 = global_transform.origin
 	var enemy = enemy_scene.instantiate()
-	enemy.collided_with_player.connect(player_character._on_simple_enemy_collided_with_player)
+	enemy.player_character = player_character
+	enemy.tree = tree
+	enemy.add_to_group("Enemy")
 	add_child(enemy)
 	enemy.global_transform.origin = spawn_point
 	enemies_spawned += 1

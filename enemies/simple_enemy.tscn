@@ -13,6 +13,8 @@ albedo_texture = ExtResource("2_6jotu")
 texture_filter = 0
 
 [node name="SimpleEnemy" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 3
+collision_mask = 17
 script = ExtResource("1_upmka")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
