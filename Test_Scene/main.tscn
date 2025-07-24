@@ -19,6 +19,7 @@ background_mode = 2
 sky = SubResource("Sky_2xg56")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupyr"]
 albedo_texture = ExtResource("3_eprlh")
