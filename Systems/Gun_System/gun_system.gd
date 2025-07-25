@@ -5,6 +5,9 @@ extends Node
 @onready var player_arms: Node3D = $"../CameraHolder/Camera/Player_Arms"
 @onready var hud: Control = $HUD
 
+@onready var GunAudio: AudioStreamPlayer3D = $"../AudioStreamPlayer3D"
+
+
 
 const BULLET_DECALS = preload("res://Assets/Decals/bullet_decals.tscn")
 
@@ -36,11 +39,16 @@ func player_reload():
 func shoot():
 	current_gun = parent.current_gun
 	
+	if parent.current_bullets == 0:
+		GunAudio.stream = current_gun.dry_sound
+		GunAudio.play()
+	
 	if parent.can_shoot and parent.current_bullets > 0:
 		var valid_bullets : Array[Dictionary] = get_bullet_raycasts()
 		
 		player_arms.play_gun_anim("recoil")
-		
+		GunAudio.stream = current_gun.firing_sound.pick_random()
+		GunAudio.play()
 		if current_gun.type != Gun.GunType.MELEE:
 			parent.current_bullets = parent.current_bullets - 1
 			
@@ -125,6 +133,7 @@ func get_bullet_raycasts():
 func reload():
 	current_gun = parent.current_gun
 	
+	
 	if current_gun.type != Gun.GunType.MELEE:
 		#If gun is missing bullets and player has required bullets:
 			if parent.current_bullets < current_gun.max_mag:
@@ -134,6 +143,8 @@ func reload():
 				if parent.ammo[current_gun.ammo] > -1:
 					#Play reload animation and sfx
 					player_arms.play_gun_anim("reload")
+					GunAudio.stream = current_gun.reload_sound
+					GunAudio.play()
 					return
 
 

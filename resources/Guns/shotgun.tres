@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Gun" load_steps=4 format=3 uid="uid://dbgrc20hx83fp"]
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://dbgrc20hx83fp"]
 
 [ext_resource type="AudioStream" uid="uid://b8besuw1taeko" path="res://Assets/SFX/523091__magnuswaker__shotgun-blast-1.wav" id="1_7fkct"]
+[ext_resource type="AudioStream" uid="uid://cl8vtth0ow0sh" path="res://Assets/SFX/shotgun_dryfire.wav" id="1_diycs"]
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_eqp7o"]
 [ext_resource type="ArrayMesh" uid="uid://5t1tppoxrtpc" path="res://Assets/Weapons/player_arms_shotgun.tres" id="1_wx6bj"]
+[ext_resource type="AudioStream" uid="uid://ds5payp8kj3nl" path="res://Assets/SFX/shotgun_reload.wav" id="3_q4vdl"]
 
 [resource]
 script = ExtResource("1_eqp7o")
@@ -13,6 +15,8 @@ cooldown = 0.4
 sway = 0.2
 automatic = false
 firing_sound = Array[AudioStream]([ExtResource("1_7fkct")])
+reload_sound = ExtResource("3_q4vdl")
+dry_sound = ExtResource("1_diycs")
 damage = 10
 spread = 2.25
 max_mag = 8

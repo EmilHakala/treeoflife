@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Gun" load_steps=4 format=3 uid="uid://cawkhq34w2l6k"]
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://cawkhq34w2l6k"]
 
 [ext_resource type="AudioStream" uid="uid://cppbuj04c41u8" path="res://Assets/SFX/388194__morganpurkis__single-pistol-gunshot-32.wav" id="1_baym2"]
+[ext_resource type="AudioStream" uid="uid://bikhtq4ematf3" path="res://Assets/SFX/pistol_dyfire.wav" id="1_jna6r"]
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_x1lxy"]
 [ext_resource type="ArrayMesh" uid="uid://bks3p4vgsdbos" path="res://Assets/Weapons/player_arms_revolver.tres" id="1_yvauu"]
+[ext_resource type="AudioStream" uid="uid://c0gkch4l8qw4s" path="res://Assets/SFX/276959__gfl7__pistol-reload-sound.mp3" id="3_ekb18"]
 
 [resource]
 script = ExtResource("1_x1lxy")
@@ -13,6 +15,8 @@ cooldown = 0.3
 sway = 0.1
 automatic = false
 firing_sound = Array[AudioStream]([ExtResource("1_baym2")])
+reload_sound = ExtResource("3_ekb18")
+dry_sound = ExtResource("1_jna6r")
 damage = 40
 spread = 1.0
 max_mag = 6

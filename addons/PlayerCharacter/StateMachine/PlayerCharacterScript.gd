@@ -154,7 +154,6 @@ func _physics_process(_delta : float):
 	
 	#SemiAuto gun
 	if Input.is_action_just_pressed("Fire") and current_gun.automatic == false:
-		Gun_sfx.stream = current_gun.firing_sound.pick_random()
 		gun.shoot()
 		
 	hud.update_hud()
