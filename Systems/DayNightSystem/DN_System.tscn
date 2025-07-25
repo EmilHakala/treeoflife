@@ -17,7 +17,13 @@ sky_material = SubResource("PhysicalSkyMaterial_wg67x")
 
 [sub_resource type="Environment" id="Environment_1varl"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_6autu")
+fog_enabled = true
+fog_light_color = Color(0.309804, 0.227451, 0.380392, 1)
+fog_light_energy = 0.5
+fog_aerial_perspective = 0.3
+fog_sky_affect = 0.292
 
 [node name="DnSystem" type="Node3D"]
 script = ExtResource("1_8aawm")
