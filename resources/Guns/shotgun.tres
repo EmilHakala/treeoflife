@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Gun" load_steps=3 format=3 uid="uid://dbgrc20hx83fp"]
+[gd_resource type="Resource" script_class="Gun" load_steps=4 format=3 uid="uid://dbgrc20hx83fp"]
 
+[ext_resource type="AudioStream" uid="uid://b8besuw1taeko" path="res://Assets/SFX/523091__magnuswaker__shotgun-blast-1.wav" id="1_7fkct"]
 [ext_resource type="Script" uid="uid://bh8pryhk6qeln" path="res://resources/GunResource.gd" id="1_eqp7o"]
 [ext_resource type="ArrayMesh" uid="uid://5t1tppoxrtpc" path="res://Assets/Weapons/player_arms_shotgun.tres" id="1_wx6bj"]
 
@@ -11,7 +12,7 @@ mesh = ExtResource("1_wx6bj")
 cooldown = 0.4
 sway = 0.2
 automatic = false
-firing_sound = Array[AudioStream]([])
+firing_sound = Array[AudioStream]([ExtResource("1_7fkct")])
 damage = 10
 spread = 2.25
 max_mag = 8
