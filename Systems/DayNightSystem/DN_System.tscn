@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bao2c6bwt0oyj"]
+[gd_scene load_steps=7 format=3 uid="uid://bao2c6bwt0oyj"]
 
 [ext_resource type="Script" uid="uid://0hbxxtclg65l" path="res://Systems/DayNightSystem/dn_system.gd" id="1_8aawm"]
 
+[sub_resource type="Gradient" id="Gradient_8aawm"]
+colors = PackedColorArray(0.309804, 0.227451, 0.380392, 1, 0.0728426, 0.0728426, 0.0728426, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ca6iy"]
+gradient = SubResource("Gradient_8aawm")
+fill_from = Vector2(1, 0.532609)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_wg67x"]
+night_sky = SubResource("GradientTexture2D_ca6iy")
+
+[sub_resource type="Sky" id="Sky_6autu"]
+sky_material = SubResource("PhysicalSkyMaterial_wg67x")
+
+[sub_resource type="Environment" id="Environment_1varl"]
+background_mode = 2
+sky = SubResource("Sky_6autu")
+
 [node name="DnSystem" type="Node3D"]
 script = ExtResource("1_8aawm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1varl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0)

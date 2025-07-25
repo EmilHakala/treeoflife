@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bec4lt0byjcxs"]
+[gd_scene load_steps=12 format=3 uid="uid://bec4lt0byjcxs"]
 
 [ext_resource type="PackedScene" uid="uid://cbqa64dyues83" path="res://Player/hud.tscn" id="1_eprlh"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_nstlf"]
@@ -6,20 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://der8e5rdlumor" path="res://Assets/Nature/textures/grass01.png" id="3_eprlh"]
 [ext_resource type="Script" uid="uid://6a6ieh4x6wd5" path="res://Tree/tree.gd" id="4_i07i3"]
 [ext_resource type="PackedScene" uid="uid://bao2c6bwt0oyj" path="res://Systems/DayNightSystem/DN_System.tscn" id="7_yupyr"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nstlf"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_2xg56"]
-sky_material = SubResource("ProceduralSkyMaterial_nstlf")
-
-[sub_resource type="Environment" id="Environment_3adw2"]
-background_mode = 2
-sky = SubResource("Sky_2xg56")
-tonemap_mode = 2
-glow_enabled = true
-fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupyr"]
 albedo_texture = ExtResource("3_eprlh")
@@ -42,13 +28,6 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [node name="Node3D" type="Node3D"]
 
 [node name="HUD" parent="." instance=ExtResource("1_eprlh")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3adw2")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_nstlf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94428, 3, 0)

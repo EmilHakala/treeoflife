@@ -131,7 +131,7 @@ func reload():
 				parent.can_shoot = false
 				parent.is_reloading = true
 				
-				if parent.ammo[current_gun.ammo] > 0:
+				if parent.ammo[current_gun.ammo] > -1:
 					#Play reload animation and sfx
 					player_arms.play_gun_anim("reload")
 					return
